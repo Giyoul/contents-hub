@@ -70,14 +70,6 @@ export default function Header() {
 									{item.name}
 								</Link>
 							))}
-							<div className="pt-3 border-t border-gray-200 space-y-2">
-								<Button variant="outline" size="sm" className="w-full">
-									Search
-								</Button>
-								<Button size="sm" className="w-full">
-									Join Community
-								</Button>
-							</div>
 						</div>
 					</div>
 				)}

@@ -1,6 +1,5 @@
 
 import Header from '../../components/feature/Header';
-import Footer from '../../components/feature/Footer';
 import HeroSection from './components/HeroSection';
 
 export default function HomePage() {
