@@ -216,6 +216,10 @@ i18n (다국어 지원)
 - [ ]  supabase 구축
 - [ ]  supabase api call 코드 반영
 
+
+### 3. util
+- [ ]  router 설정
+
 ---
 
 ## 커밋 컨벤션
