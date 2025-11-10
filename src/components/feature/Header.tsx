@@ -44,7 +44,16 @@ export default function Header() {
 					</nav>
 
 					<div className="flex items-center">
-						Made by 영기
+						<a
+							href="https://github.com/Giyoul"
+							// 새 탭에서 열기
+							target="_blank"
+							rel="noopener noreferrer"
+							className="inline-flex items-center justify-center font-medium rounded-lg transition-all duration-200 text-gray-600 hover:text-gray-900 hover:bg-gray-100 px-3 py-1.5 text-sm"
+						>
+							<i className="ri-github-fill mr-2"></i>
+							Made by 영기
+						</a>
 					</div>
 
 					<div className="md:hidden">

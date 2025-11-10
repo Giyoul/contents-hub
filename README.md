@@ -218,6 +218,7 @@ i18n (다국어 지원)
 
 ### 2. 핵심 로직 기능
 
+- [x]  made by에 github link 연결시키기
 - [ ]  supabase 구축
 - [ ]  supabase api call 코드 반영
 
