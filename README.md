@@ -206,7 +206,7 @@ i18n (다국어 지원)
 ### 1. UI
 
 - [x]  헤더 - 리디자인
-- [ ]  헤더 - hover background color 변경
+- [x]  헤더 - hover background color 변경
 - [x]  모바일 뷰 햄버거 버튼 구성 수정
 - [x]  푸터 리디자인
 - [x]  온보딩 페이지 모바일 뷰 히든 컴포넌트 설정

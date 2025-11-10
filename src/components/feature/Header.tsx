@@ -27,15 +27,15 @@ export default function Header() {
 						</Link>
 					</div>
 
-					<nav className="hidden md:flex space-x-8">
+					<nav className="hidden md:flex space-x-2">
 						{navigation.map((item) => (
 							<Link
 								key={item.name}
 								to={item.href}
-								className={`text-sm font-medium transition-colors duration-200 ${
+								className={`text-sm font-medium transition-all duration-200 px-3 py-2 rounded-md ${
 									location.pathname === item.href
-										? 'text-blue-600'
-										: 'text-gray-600 hover:text-gray-900'
+										? 'text-blue-600 bg-blue-50'
+										: 'text-gray-600 hover:text-gray-900 hover:bg-gray-100'
 								}`}
 							>
 								{item.name}
@@ -49,7 +49,7 @@ export default function Header() {
 							// 새 탭에서 열기
 							target="_blank"
 							rel="noopener noreferrer"
-							className="inline-flex items-center justify-center font-medium rounded-lg transition-all duration-200 text-gray-600 hover:text-gray-900 hover:bg-gray-100 px-3 py-1.5 text-sm"
+							className="inline-flex items-center justify-center font-medium rounded-lg transition-all duration-200 text-gray-600 hover:text-gray-900 hover:bg-gray-100 px-3 py-3 text-sm"
 						>
 							<i className="ri-github-fill mr-2"></i>
 							Made by 영기
