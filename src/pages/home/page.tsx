@@ -12,7 +12,6 @@ export default function HomePage() {
 				{/*  메인 베너 */}
 				<HeroSection/>
 			</main>
-			<Footer/>
 		</div>
 	);
 }
