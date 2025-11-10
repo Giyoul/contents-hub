@@ -8,10 +8,10 @@ export default function Header() {
   
   const navigation = [
     { name: 'Home', href: '/' },
-    { name: 'Debates', href: '/debates' },
-    { name: 'Shared Content', href: '/shared' },
-    { name: 'Resources', href: '/resources' },
-    { name: 'About', href: '/about' }
+    { name: '공통', href: '/common' },
+    { name: 'BE', href: '/be' },
+    { name: 'FE', href: '/fe' },
+    { name: 'AN', href: '/an' }
   ];
   
   return (
@@ -42,16 +42,6 @@ export default function Header() {
               </Link>
             ))}
           </nav>
-          
-          <div className="hidden md:flex items-center space-x-4">
-            <Button variant="outline" size="sm">
-              <i className="ri-search-line mr-2"></i>
-              Search
-            </Button>
-            <Button size="sm">
-              Join Community
-            </Button>
-          </div>
           
           <div className="md:hidden">
             <button

@@ -9,22 +9,31 @@ const SharedPage = lazy(() => import('../pages/shared/page'));
 const NotFoundPage = lazy(() => import('../pages/NotFound'));
 
 const routes: RouteObject[] = [
-  {
-    path: '/',
-    element: <HomePage />,
-  },
-  {
-    path: '/debates',
-    element: <DebatesPage />,
-  },
-  {
-    path: '/shared',
-    element: <SharedPage />,
-  },
-  {
-    path: '*',
-    element: <NotFoundPage />,
-  },
+	{
+		path: '/',
+		element: <HomePage/>,
+	},
+	{
+		path: '/common',
+		element: <DebatesPage/>,
+	},
+	{
+		path: '/be',
+		element: <SharedPage/>,
+	},
+	{
+		path: '/fe',
+		element: <SharedPage/>,
+	},
+	{
+		path: '/an',
+		element: <SharedPage/>,
+	},
+	{
+		path: '*',
+		element: <NotFoundPage/>,
+	},
+
 ];
 
 export default routes;
