@@ -158,7 +158,7 @@ export default function DebatesPage() {
 		<div className="min-h-screen bg-gray-50">
 			<Header/>
 			<PageWithSidebar categories={categories}>
-				<div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+				<div className="w-full px-4 sm:px-6 lg:px-8 py-8 h-full">
 					<div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
 						{/* Posts List */}
 						<div className="lg:col-span-2">
@@ -183,27 +183,6 @@ export default function DebatesPage() {
 										<p className="text-gray-600 mb-4 leading-relaxed">
 											{post.preview}
 										</p>
-
-										<div className="flex flex-wrap gap-2 mb-4">
-											{post.tags.map((tag) => (
-												<span
-													key={tag}
-													className="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm font-medium"
-												>
-                        {tag}
-                      </span>
-											))}
-										</div>
-
-										<div className="flex items-center justify-between text-sm text-gray-500">
-											<div className="flex items-center space-x-4">
-												<span>By {post.author}</span>
-												<span>{post.timestamp}</span>
-											</div>
-											<span className="text-blue-600 font-medium">
-                      {post.resources.length} resources
-                    </span>
-										</div>
 									</div>
 								))}
 							</div>

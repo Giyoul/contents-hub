@@ -8,9 +8,9 @@ interface pageWithSidebarProps {
 
 export default function PageWithSidebar({ children, categories }: pageWithSidebarProps) {
 	return (
-		<div className="flex">
+		<div className="flex w-full">
 			<Sidebar categories={categories}/>
-			<main className="flex-1 min-h-screen">
+			<main className="flex-1 w-full min-h-screen">
 				{children}
 			</main>
 		</div>
