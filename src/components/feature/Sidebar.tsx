@@ -35,23 +35,6 @@ export default function Sidebar({ categories }: SidebarProps) {
 							>
 								{category.name}
 							</Link>
-							{category.subCategories && category.subCategories.length > 0 && (
-								<div className="ml-4 mt-1 space-y-1">
-									{category.subCategories.map((subCategory) => (
-										<Link
-											key={subCategory.id}
-											to={subCategory.path}
-											className={`block px-4 py-2 rounded-md text-sm transition-all duration-200 ${
-												isActive(subCategory.path)
-													? 'bg-blue-50 text-blue-600 font-medium'
-													: 'text-gray-600 hover:bg-gray-50 hover:text-gray-900'
-											}`}
-										>
-											{subCategory.name}
-										</Link>
-									))}
-								</div>
-							)}
 						</div>
 					))}
 				</div>
