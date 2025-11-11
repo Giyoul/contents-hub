@@ -10,7 +10,7 @@ export default function PageWithSidebar({ children, categories }: pageWithSideba
 	return (
 		<div className="flex w-full">
 			<Sidebar categories={categories}/>
-			<main className="flex-1 w-full min-h-screen">
+			<main className="flex-1 min-w-0 min-h-screen">
 				{children}
 			</main>
 		</div>

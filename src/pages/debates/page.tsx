@@ -158,11 +158,9 @@ export default function DebatesPage() {
 		<div className="min-h-screen bg-gray-50">
 			<Header/>
 			<PageWithSidebar categories={categories}>
-				<div className="w-full px-4 sm:px-6 lg:px-8 py-8 h-full">
-					<div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-						{/* Posts List */}
-						<div className="lg:col-span-2">
-							<div className="space-y-6">
+				<div className="w-full pl-4 sm:pl-6 lg:pl-8 pr-8 py-8">
+					<div className="w-full">
+						<div className="space-y-6">
 								{filteredPosts.map((post) => (
 									<div
 										key={post.id}
@@ -185,7 +183,6 @@ export default function DebatesPage() {
 										</p>
 									</div>
 								))}
-							</div>
 						</div>
 					</div>
 				</div>

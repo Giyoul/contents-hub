@@ -212,7 +212,7 @@ i18n (다국어 지원)
 - [x]  사이드바 - 초기 코드 AI로 뽑아내기
 - [x]  사이드바 - 필요없는 UI 제거
 - [x]  토론하기 페이지 - 우측 가이드라인 제거
-- [ ]  토론하기 페이지 - main component block 사이즈 늘리기
+- [x]  토론하기 페이지 - main component block 사이즈 늘리기
 - [x]  토론하기 페이지 - main component block 필요없는 내용 지우기
 - [ ]  글 상세 페이지
 
