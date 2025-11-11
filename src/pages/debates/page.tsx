@@ -2,13 +2,11 @@
 import { useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import Header from '../../components/feature/Header';
-import Footer from '../../components/feature/Footer';
-import Card from '../../components/base/Card';
-import Button from '../../components/base/Button';
 import PageWithSidebar from '../../components/layout/PageWithSidebar';
 import { getCategoriesForPath } from '../../data/categories';
+import PostDetail from './components/PostDetail';
 
-interface DebatePost {
+export interface DebatePost {
   id: string;
   title: string;
   author: string;
@@ -115,8 +113,6 @@ export default function DebatesPage() {
     }
   ];
 
-  const allTags = Array.from(new Set(debatePosts.flatMap(post => post.tags)));
-
   const filteredPosts = debatePosts.filter(post => {
     const matchesSearch = post.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
                          post.preview.toLowerCase().includes(searchTerm.toLowerCase());
@@ -124,34 +120,12 @@ export default function DebatesPage() {
     return matchesSearch && matchesTag;
   });
 
-  const getResourceIcon = (type: string) => {
-    switch (type) {
-      case 'article': return 'ri-article-line';
-      case 'video': return 'ri-video-line';
-      case 'research': return 'ri-file-text-line';
-      case 'news': return 'ri-newspaper-line';
-      default: return 'ri-link';
-    }
-  };
-
-  const getResourceColor = (type: string) => {
-	  switch (type) {
-		  case 'article':
-			  return 'bg-blue-100 text-blue-600';
-		  case 'video':
-			  return 'bg-red-100 text-red-600';
-		  case 'research':
-			  return 'bg-green-100 text-green-600';
-		  case 'news':
-			  return 'bg-purple-100 text-purple-600';
-		  default:
-			  return 'bg-gray-100 text-gray-600';
-	  }
-
-  };
-
   const handlePostClick = (post: DebatePost) => {
     setSelectedPost(post);
+  };
+
+  const handleBack = () => {
+    setSelectedPost(null);
   };
 
 	return (
@@ -159,17 +133,16 @@ export default function DebatesPage() {
 			<Header/>
 			<PageWithSidebar categories={categories}>
 				<div className="w-full pl-4 sm:pl-6 lg:pl-8 pr-8 py-8">
-					<div className="w-full">
-						<div className="space-y-6">
+					{selectedPost ? (
+						<PostDetail post={selectedPost} onBack={handleBack} />
+					) : (
+						<div className="w-full">
+							<div className="space-y-6">
 								{filteredPosts.map((post) => (
 									<div
 										key={post.id}
 										onClick={() => handlePostClick(post)}
-										className={`bg-white rounded-xl border shadow-sm hover:shadow-md transition-all duration-200 p-6 cursor-pointer ${
-											selectedPost?.id === post.id
-												? 'ring-2 ring-blue-500 bg-blue-50 border-blue-200'
-												: 'border-gray-200 hover:border-blue-300'
-										}`}
+										className="bg-white rounded-xl border border-gray-200 shadow-sm hover:shadow-md transition-all duration-200 p-6 cursor-pointer hover:border-blue-300"
 									>
 										<div className="flex items-start justify-between mb-3">
 											<h3 className="text-xl font-semibold text-gray-900 hover:text-blue-600 transition-colors">
@@ -183,8 +156,9 @@ export default function DebatesPage() {
 										</p>
 									</div>
 								))}
+							</div>
 						</div>
-					</div>
+					)}
 				</div>
 			</PageWithSidebar>
 		</div>
