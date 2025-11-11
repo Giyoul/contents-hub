@@ -103,11 +103,7 @@ src/
 │   ├── home/                   # 홈 페이지
 │   │   ├── page.tsx
 │   │   └── components/         # 홈 페이지 전용 컴포넌트
-│   │       ├── HeroSection.tsx
-│   │       ├── CategoryOverview.tsx
-│   │       ├── FeaturedContent.tsx
-│   │       ├── StatsSection.tsx
-│   │       └── RecentActivity.tsx
+│   │       └── HeroSection.tsx
 │   ├── debates/                # 토론 페이지
 │   │   └── page.tsx
 │   ├── shared/                 # 공유 콘텐츠 페이지
@@ -213,8 +209,8 @@ i18n (다국어 지원)
 - [x]  온보딩 페이지 - background image 삭제
 - [x]  온보딩 페이지 - 홈페이지 소개 텍스트 수정
 - [x]  온보딩 페이지 - 컴포넌트 재배치
+- [x]  사이드바 - 초기 코드 AI로 뽑아내기
 - [ ]  토론하기 페이지 리디자인
-- [ ]  사이드바
 - [ ]  글 상세 페이지
 
 ### 2. 핵심 로직 기능

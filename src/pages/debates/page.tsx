@@ -1,9 +1,12 @@
 
 import { useState } from 'react';
+import { useLocation } from 'react-router-dom';
 import Header from '../../components/feature/Header';
 import Footer from '../../components/feature/Footer';
 import Card from '../../components/base/Card';
 import Button from '../../components/base/Button';
+import PageWithSidebar from '../../components/layout/PageWithSidebar';
+import { getCategoriesForPath } from '../../data/categories';
 
 interface DebatePost {
   id: string;
@@ -22,6 +25,8 @@ interface DebatePost {
 }
 
 export default function DebatesPage() {
+  const location = useLocation();
+  const categories = getCategoriesForPath(location.pathname);
   const [selectedPost, setSelectedPost] = useState<DebatePost | null>(null);
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedTag, setSelectedTag] = useState('');
@@ -143,184 +148,152 @@ export default function DebatesPage() {
     setSelectedPost(post);
   };
 
-  return (
-    <div className="min-h-screen bg-gray-50">
-      <Header />
-      
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <div className="mb-8">
-          <h1 className="text-3xl font-bold text-gray-900 mb-4">Debate Discussions</h1>
-          <p className="text-lg text-gray-600 mb-6">
-            Explore structured debates from Discord with supporting resources to understand the topics
-          </p>
-          
-          {/* Search and Filter */}
-          <div className="flex flex-col sm:flex-row gap-4 mb-6">
-            <div className="flex-1">
-              <div className="relative">
-                <i className="ri-search-line absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
-                <input
-                  type="text"
-                  placeholder="Search debates..."
-                  value={searchTerm}
-                  onChange={(e) => setSearchTerm(e.target.value)}
-                  className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm"
-                />
-              </div>
-            </div>
-            
-            <select
-              value={selectedTag}
-              onChange={(e) => setSelectedTag(e.target.value)}
-              className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent pr-8"
-            >
-              <option value="">All Topics</option>
-              {allTags.map(tag => (
-                <option key={tag} value={tag}>{tag}</option>
-              ))}
-            </select>
-          </div>
-        </div>
+	return (
+		<div className="min-h-screen bg-gray-50">
+			<Header/>
+			<PageWithSidebar categories={categories}>
+				<div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+				<div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+					{/* Posts List */}
+					<div className="lg:col-span-2">
+						<div className="space-y-6">
+							{filteredPosts.map((post) => (
+								<div
+									key={post.id}
+									onClick={() => handlePostClick(post)}
+									className={`bg-white rounded-xl border shadow-sm hover:shadow-md transition-all duration-200 p-6 cursor-pointer ${
+										selectedPost?.id === post.id
+											? 'ring-2 ring-blue-500 bg-blue-50 border-blue-200'
+											: 'border-gray-200 hover:border-blue-300'
+									}`}
+								>
+									<div className="flex items-start justify-between mb-3">
+										<h3 className="text-xl font-semibold text-gray-900 hover:text-blue-600 transition-colors">
+											{post.title}
+										</h3>
+										<i className="ri-discord-fill text-blue-600 text-lg ml-2 flex-shrink-0"></i>
+									</div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          {/* Posts List */}
-          <div className="lg:col-span-2">
-            <div className="space-y-6">
-              {filteredPosts.map((post) => (
-                <div
-                  key={post.id}
-                  onClick={() => handlePostClick(post)}
-                  className={`bg-white rounded-xl border shadow-sm hover:shadow-md transition-all duration-200 p-6 cursor-pointer ${
-                    selectedPost?.id === post.id 
-                      ? 'ring-2 ring-blue-500 bg-blue-50 border-blue-200' 
-                      : 'border-gray-200 hover:border-blue-300'
-                  }`}
-                >
-                  <div className="flex items-start justify-between mb-3">
-                    <h3 className="text-xl font-semibold text-gray-900 hover:text-blue-600 transition-colors">
-                      {post.title}
-                    </h3>
-                    <i className="ri-discord-fill text-blue-600 text-lg ml-2 flex-shrink-0"></i>
-                  </div>
-                  
-                  <p className="text-gray-600 mb-4 leading-relaxed">
-                    {post.preview}
-                  </p>
-                  
-                  <div className="flex flex-wrap gap-2 mb-4">
-                    {post.tags.map((tag) => (
-                      <span 
-                        key={tag}
-                        className="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm font-medium"
-                      >
+									<p className="text-gray-600 mb-4 leading-relaxed">
+										{post.preview}
+									</p>
+
+									<div className="flex flex-wrap gap-2 mb-4">
+										{post.tags.map((tag) => (
+											<span
+												key={tag}
+												className="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm font-medium"
+											>
                         {tag}
                       </span>
-                    ))}
-                  </div>
-                  
-                  <div className="flex items-center justify-between text-sm text-gray-500">
-                    <div className="flex items-center space-x-4">
-                      <span>By {post.author}</span>
-                      <span>{post.timestamp}</span>
-                    </div>
-                    <span className="text-blue-600 font-medium">
+										))}
+									</div>
+
+									<div className="flex items-center justify-between text-sm text-gray-500">
+										<div className="flex items-center space-x-4">
+											<span>By {post.author}</span>
+											<span>{post.timestamp}</span>
+										</div>
+										<span className="text-blue-600 font-medium">
                       {post.resources.length} resources
                     </span>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
+									</div>
+								</div>
+							))}
+						</div>
+					</div>
 
-          {/* Selected Post Details */}
-          <div className="lg:col-span-1">
-            <div className="lg:sticky lg:top-24">
-              {selectedPost ? (
-                <div className="bg-white rounded-xl border-2 border-blue-200 shadow-lg p-6">
-                  <div className="flex items-center justify-between mb-4">
-                    <h3 className="text-lg font-semibold text-gray-900">
-                      {selectedPost.title}
-                    </h3>
-                    <button 
-                      onClick={() => setSelectedPost(null)}
-                      className="lg:hidden text-gray-400 hover:text-gray-600 w-6 h-6 flex items-center justify-center"
-                    >
-                      <i className="ri-close-line text-xl"></i>
-                    </button>
-                  </div>
-                  
-                  {/* Discord Link */}
-                  <div className="mb-6">
-                    <h4 className="text-sm font-medium text-gray-700 mb-3 flex items-center">
-                      <i className="ri-discord-fill text-blue-600 mr-2"></i>
-                      Original Discussion
-                    </h4>
-                    <a
-                      href={selectedPost.discordLink}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors whitespace-nowrap"
-                    >
-                      <i className="ri-external-link-line mr-2"></i>
-                      View on Discord
-                    </a>
-                  </div>
-                  
-                  {/* Resources */}
-                  <div>
-                    <h4 className="text-sm font-medium text-gray-700 mb-3 flex items-center">
-                      <i className="ri-book-line text-green-600 mr-2"></i>
-                      Recommended Resources ({selectedPost.resources.length})
-                    </h4>
-                    <div className="space-y-3">
-                      {selectedPost.resources.map((resource, index) => (
-                        <div key={index} className="border border-gray-200 rounded-lg p-3 hover:border-gray-300 transition-colors">
-                          <div className="flex items-start space-x-3">
-                            <div className={`w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0 ${getResourceColor(resource.type)}`}>
-                              <i className={`${getResourceIcon(resource.type)} text-sm`}></i>
-                            </div>
-                            <div className="flex-1 min-w-0">
-                              <h5 className="text-sm font-medium text-gray-900 mb-1">
-                                {resource.title}
-                              </h5>
-                              <p className="text-xs text-gray-600 mb-2">
-                                {resource.description}
-                              </p>
-                              <a
-                                href={resource.url}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="inline-flex items-center text-xs text-blue-600 hover:text-blue-700 font-medium"
-                              >
-                                Read More
-                                <i className="ri-arrow-right-line ml-1"></i>
-                              </a>
-                            </div>
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-              ) : (
-                <div className="bg-white rounded-xl border-2 border-dashed border-gray-200 p-6">
-                  <div className="text-center py-8">
-                    <i className="ri-chat-4-line text-4xl text-gray-300 mb-4"></i>
-                    <h3 className="text-lg font-medium text-gray-900 mb-2">
-                      Select a Debate
-                    </h3>
-                    <p className="text-gray-600">
-                      Click on any debate to view the original Discord link and recommended resources
-                    </p>
-                  </div>
-                </div>
-              )}
-            </div>
-          </div>
-        </div>
-      </main>
-      
-      <Footer />
-    </div>
-  );
+					{/* Selected Post Details */}
+					<div className="lg:col-span-1">
+						<div className="lg:sticky lg:top-24">
+							{selectedPost ? (
+								<div className="bg-white rounded-xl border-2 border-blue-200 shadow-lg p-6">
+									<div className="flex items-center justify-between mb-4">
+										<h3 className="text-lg font-semibold text-gray-900">
+											{selectedPost.title}
+										</h3>
+										<button
+											onClick={() => setSelectedPost(null)}
+											className="lg:hidden text-gray-400 hover:text-gray-600 w-6 h-6 flex items-center justify-center"
+										>
+											<i className="ri-close-line text-xl"></i>
+										</button>
+									</div>
+
+									{/* Discord Link */}
+									<div className="mb-6">
+										<h4 className="text-sm font-medium text-gray-700 mb-3 flex items-center">
+											<i className="ri-discord-fill text-blue-600 mr-2"></i>
+											Original Discussion
+										</h4>
+										<a
+											href={selectedPost.discordLink}
+											target="_blank"
+											rel="noopener noreferrer"
+											className="inline-flex items-center px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors whitespace-nowrap"
+										>
+											<i className="ri-external-link-line mr-2"></i>
+											View on Discord
+										</a>
+									</div>
+
+									{/* Resources */}
+									<div>
+										<h4 className="text-sm font-medium text-gray-700 mb-3 flex items-center">
+											<i className="ri-book-line text-green-600 mr-2"></i>
+											Recommended Resources ({selectedPost.resources.length})
+										</h4>
+										<div className="space-y-3">
+											{selectedPost.resources.map((resource, index) => (
+												<div key={index}
+													 className="border border-gray-200 rounded-lg p-3 hover:border-gray-300 transition-colors">
+													<div className="flex items-start space-x-3">
+														<div
+															className={`w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0 ${getResourceColor(resource.type)}`}>
+															<i className={`${getResourceIcon(resource.type)} text-sm`}></i>
+														</div>
+														<div className="flex-1 min-w-0">
+															<h5 className="text-sm font-medium text-gray-900 mb-1">
+																{resource.title}
+															</h5>
+															<p className="text-xs text-gray-600 mb-2">
+																{resource.description}
+															</p>
+															<a
+																href={resource.url}
+																target="_blank"
+																rel="noopener noreferrer"
+																className="inline-flex items-center text-xs text-blue-600 hover:text-blue-700 font-medium"
+															>
+																Read More
+																<i className="ri-arrow-right-line ml-1"></i>
+															</a>
+														</div>
+													</div>
+												</div>
+											))}
+										</div>
+									</div>
+								</div>
+							) : (
+								<div className="bg-white rounded-xl border-2 border-dashed border-gray-200 p-6">
+									<div className="text-center py-8">
+										<i className="ri-chat-4-line text-4xl text-gray-300 mb-4"></i>
+										<h3 className="text-lg font-medium text-gray-900 mb-2">
+											Select a Debate
+										</h3>
+										<p className="text-gray-600">
+											Click on any debate to view the original Discord link and recommended
+											resources
+										</p>
+									</div>
+								</div>
+							)}
+						</div>
+					</div>
+				</div>
+				</div>
+			</PageWithSidebar>
+		</div>
+	);
 }

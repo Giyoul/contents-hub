@@ -1,8 +1,11 @@
 import { useState } from 'react';
+import { useLocation } from 'react-router-dom';
 import Header from '../../components/feature/Header';
 import Footer from '../../components/feature/Footer';
 import Card from '../../components/base/Card';
 import Button from '../../components/base/Button';
+import PageWithSidebar from '../../components/layout/PageWithSidebar';
+import { getCategoriesForPath } from '../../data/categories';
 
 interface SharedPost {
   id: string;
@@ -26,6 +29,8 @@ interface SharedPost {
 }
 
 export default function SharedPage() {
+  const location = useLocation();
+  const categories = getCategoriesForPath(location.pathname);
   const [selectedPost, setSelectedPost] = useState<SharedPost | null>(null);
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('');
@@ -177,8 +182,8 @@ export default function SharedPage() {
   return (
     <div className="min-h-screen bg-gray-50">
       <Header />
-      
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <PageWithSidebar categories={categories}>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="mb-8">
           <h1 className="text-3xl font-bold text-gray-900 mb-4">Shared Content</h1>
           <p className="text-lg text-gray-600 mb-6">
@@ -356,7 +361,8 @@ export default function SharedPage() {
             </div>
           </div>
         </div>
-      </main>
+        </div>
+      </PageWithSidebar>
       
       <Footer />
     </div>
