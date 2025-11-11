@@ -20,7 +20,7 @@ export default function Sidebar({ categories }: SidebarProps) {
 	};
 
 	return (
-		<aside className="w-64 bg-white border-r border-gray-200 min-h-screen sticky top-16 overflow-y-auto">
+		<aside className="w-64 bg-white border-r border-gray-200 h-[calc(100vh-4rem)] sticky top-16 overflow-y-auto">
 			<nav className="p-4">
 				<div className="space-y-1">
 					{categories.map((category) => (
