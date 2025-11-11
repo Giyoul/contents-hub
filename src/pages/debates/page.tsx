@@ -20,11 +20,11 @@ export interface DebatePost {
     url: string;
     description: string;
   }[];
-  // debates: {
-	//   title: string;
-	//   url: string;
-	//   description: string;
-  // };
+  debates: {
+	  title: string;
+	  url: string;
+	  description: string;
+  }[];
 }
 
 export default function DebatesPage() {
@@ -35,35 +35,48 @@ export default function DebatesPage() {
   const [selectedTag, setSelectedTag] = useState('');
 
   const debatePosts: DebatePost[] = [
-    {
-      id: '1',
-      title: 'Climate Change Policy Effectiveness',
-      author: 'EcoDebater',
-      timestamp: '2024-01-15 14:30',
-      preview: 'Discussing the effectiveness of current climate policies and potential improvements...',
-      tags: ['Climate', 'Policy', 'Environment'],
-      discordLink: 'https://discord.com/channels/123456789/987654321/111222333',
-      resources: [
-        {
-          title: 'IPCC Climate Report 2023',
-          type: 'research',
-          url: 'https://ipcc.ch/report/ar6/wg1/',
-          description: 'Latest scientific assessment on climate change'
-        },
-        {
-          title: 'Carbon Tax Analysis',
-          type: 'article',
-          url: 'https://example.com/carbon-tax',
-          description: 'Economic analysis of carbon pricing mechanisms'
-        },
-        {
-          title: 'Climate Policy Explained',
-          type: 'video',
-          url: 'https://youtube.com/watch?v=example',
-          description: 'Educational video on climate policy frameworks'
-        }
-      ]
-    },
+	  {
+		  id: '1',
+		  title: 'Climate Change Policy Effectiveness',
+		  author: 'EcoDebater',
+		  timestamp: '2024-01-15 14:30',
+		  preview: 'Discussing the effectiveness of current climate policies and potential improvements...',
+		  tags: ['Climate', 'Policy', 'Environment'],
+		  discordLink: 'https://discord.com/channels/123456789/987654321/111222333',
+		  resources: [
+			  {
+				  title: 'IPCC Climate Report 2023',
+				  type: 'research',
+				  url: 'https://ipcc.ch/report/ar6/wg1/',
+				  description: 'Latest scientific assessment on climate change'
+			  },
+			  {
+				  title: 'Carbon Tax Analysis',
+				  type: 'article',
+				  url: 'https://example.com/carbon-tax',
+				  description: 'Economic analysis of carbon pricing mechanisms'
+			  },
+			  {
+				  title: 'Climate Policy Explained',
+				  type: 'video',
+				  url: 'https://youtube.com/watch?v=example',
+				  description: 'Educational video on climate policy frameworks'
+			  }
+		  ],
+		  debates: [
+			  {
+				  title: "디스코드 토론하기 글 1 제목",
+				  url: "https://example.com",
+				  description: "디스코드 토론하기 글 1에 대한 설명"
+			  },
+			  {
+				  title: "디스코드 토론하기 글 1 제목222",
+				  url: "https://example.com",
+				  description: "디스코드 토론하기 글 1222에 대한 설명"
+			  }
+		  ],
+
+	  },
     {
       id: '2',
       title: 'Universal Basic Income Debate',
@@ -85,7 +98,19 @@ export default function DebatesPage() {
           url: 'https://example.com/ubi-economics',
           description: 'Analysis of UBI\'s potential economic effects'
         }
-      ]
+      ],
+		debates: [
+			{
+				title: "디스코드 토론하기 글 1 제목",
+				url: "https://example.com",
+				description: "디스코드 토론하기 글 1에 대한 설명"
+			},
+			{
+				title: "디스코드 토론하기 글 1 제목222",
+				url: "https://example.com",
+				description: "디스코드 토론하기 글 1222에 대한 설명"
+			}
+		],
     },
     {
       id: '3',
@@ -114,7 +139,19 @@ export default function DebatesPage() {
           url: 'https://youtube.com/watch?v=ai-debate',
           description: 'Panel discussion on AI regulation approaches'
         }
-      ]
+      ],
+		debates: [
+			{
+				title: "디스코드 토론하기 글 1 제목",
+				url: "https://example.com",
+				description: "디스코드 토론하기 글 1에 대한 설명"
+			},
+			{
+				title: "디스코드 토론하기 글 1 제목222",
+				url: "https://example.com",
+				description: "디스코드 토론하기 글 1222에 대한 설명"
+			}
+		],
     }
   ];
 

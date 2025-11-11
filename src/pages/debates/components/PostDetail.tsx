@@ -104,24 +104,47 @@ export default function PostDetail({ post, onBack }: PostDetailProps) {
 
 			{/* 학습 후 참가할 수 있는 토론하기 글 링크 */}
 			<div className="mb-8">
-				<div className="bg-gradient-to-r from-blue-50 to-purple-50 rounded-xl border border-blue-200 p-6">
+				<div className="bg-white rounded-xl border border-gray-200 p-6">
 					<h2 className="text-xl font-semibold text-gray-900 mb-4 flex items-center">
-						<i className="ri-discord-fill text-blue-600 mr-2"></i>
-						학습 후 참가할 수 있는 토론하기 글
+						<i className="ri-book-line text-blue-600 mr-2"></i>
+						학습 후 참가할 수 있는 토론하기 글 ({post.debates.length})
 					</h2>
 					<p className="text-gray-600 mb-4">
 						위 자료들을 학습하신 후, 아래 Discord 토론에 참여해보세요!
 					</p>
-					<a
-						href={post.discordLink}
-						target="_blank"
-						rel="noopener noreferrer"
-						className="inline-flex items-center px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors font-medium"
-					>
-						<i className="ri-discord-fill mr-2"></i>
-						Discord 토론 참여하기
-						<i className="ri-external-link-line ml-2"></i>
-					</a>
+					<div className="space-y-4">
+						{post.debates.map((resource, index) => (
+							<div
+								key={index}
+								className="border border-gray-200 rounded-lg p-4 hover:border-gray-300 transition-colors"
+							>
+								<div className="flex items-start space-x-4">
+									<div
+										className={`w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0 ${getResourceColor(resource.type)}`}
+									>
+										<i className={`${getResourceIcon(resource.type)} text-lg`}></i>
+									</div>
+									<div className="flex-1 min-w-0">
+										<h3 className="text-base font-medium text-gray-900 mb-2">
+											{resource.title}
+										</h3>
+										<p className="text-sm text-gray-600 mb-3">
+											{resource.description}
+										</p>
+										<a
+											href={resource.url}
+											target="_blank"
+											rel="noopener noreferrer"
+											className="inline-flex items-center text-sm text-blue-600 hover:text-blue-700 font-medium"
+										>
+											자료 보기
+											<i className="ri-external-link-line ml-1"></i>
+										</a>
+									</div>
+								</div>
+							</div>
+						))}
+					</div>
 				</div>
 			</div>
 		</div>
