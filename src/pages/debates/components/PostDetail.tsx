@@ -68,14 +68,16 @@ export default function PostDetail({ post, onBack }: PostDetailProps) {
 					</h2>
 					<div className="space-y-4">
 						{post.resources.map((resource, index) => (
-							<div
+							<a
 								key={index}
-								className="border border-gray-200 rounded-lg p-4 hover:border-gray-300 transition-colors"
+								href={resource.url}
+								target="_blank"
+								rel="noopener noreferrer"
+								className="block w-full border border-gray-200 rounded-lg p-6 hover:border-blue-300 hover:bg-blue-50 transition-all duration-200 cursor-pointer"
 							>
 								<div className="flex items-start space-x-4">
 									<div
-										className={`w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0 ${getResourceColor(resource.type)}`}
-									>
+										className={`w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0 ${getResourceColor(resource.type)}`}>
 										<i className={`${getResourceIcon(resource.type)} text-lg`}></i>
 									</div>
 									<div className="flex-1 min-w-0">
@@ -85,18 +87,13 @@ export default function PostDetail({ post, onBack }: PostDetailProps) {
 										<p className="text-sm text-gray-600 mb-3">
 											{resource.description}
 										</p>
-										<a
-											href={resource.url}
-											target="_blank"
-											rel="noopener noreferrer"
-											className="inline-flex items-center text-sm text-blue-600 hover:text-blue-700 font-medium"
-										>
+										<div className="inline-flex items-center text-sm text-blue-600 font-medium">
 											자료 보기
 											<i className="ri-external-link-line ml-1"></i>
-										</a>
+										</div>
 									</div>
 								</div>
-							</div>
+							</a>
 						))}
 					</div>
 				</div>
@@ -113,36 +110,33 @@ export default function PostDetail({ post, onBack }: PostDetailProps) {
 						위 자료들을 학습하신 후, 아래 Discord 토론에 참여해보세요!
 					</p>
 					<div className="space-y-4">
-						{post.debates.map((resource, index) => (
-							<div
+						{post.debates.map((debate, index) => (
+							<a
 								key={index}
-								className="border border-gray-200 rounded-lg p-4 hover:border-gray-300 transition-colors"
+								href={debate.url}
+								target="_blank"
+								rel="noopener noreferrer"
+								className="block w-full border border-gray-200 rounded-lg p-6 hover:border-blue-300 hover:bg-blue-50 transition-all duration-200 cursor-pointer"
 							>
 								<div className="flex items-start space-x-4">
 									<div
-										className={`w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0 ${getResourceColor(resource.type)}`}
-									>
-										<i className={`${getResourceIcon(resource.type)} text-lg`}></i>
+										className="w-12 h-12 rounded-lg bg-blue-100 text-blue-600 flex items-center justify-center flex-shrink-0">
+										<i className="ri-discord-fill text-xl"></i>
 									</div>
 									<div className="flex-1 min-w-0">
-										<h3 className="text-base font-medium text-gray-900 mb-2">
-											{resource.title}
+										<h3 className="text-lg font-semibold text-gray-900 mb-2">
+											{debate.title}
 										</h3>
 										<p className="text-sm text-gray-600 mb-3">
-											{resource.description}
+											{debate.description}
 										</p>
-										<a
-											href={resource.url}
-											target="_blank"
-											rel="noopener noreferrer"
-											className="inline-flex items-center text-sm text-blue-600 hover:text-blue-700 font-medium"
-										>
-											자료 보기
+										<div className="inline-flex items-center text-sm text-blue-600 font-medium">
+											토론 참여하기
 											<i className="ri-external-link-line ml-1"></i>
-										</a>
+										</div>
 									</div>
 								</div>
-							</div>
+							</a>
 						))}
 					</div>
 				</div>
