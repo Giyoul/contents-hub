@@ -47,10 +47,6 @@ export default function PostDetail({ post, onBack }: PostDetailProps) {
 			{/* 제목 */}
 			<div className="mb-6">
 				<h1 className="text-3xl font-bold text-gray-900 mb-4">{post.title}</h1>
-				<div className="flex items-center space-x-4 text-sm text-gray-500">
-					<span>By {post.author}</span>
-					<span>{post.timestamp}</span>
-				</div>
 			</div>
 
 			{/* 세부 내용 */}
@@ -60,18 +56,6 @@ export default function PostDetail({ post, onBack }: PostDetailProps) {
 					<p className="text-gray-700 leading-relaxed whitespace-pre-line">
 						{post.preview}
 					</p>
-					{post.tags && post.tags.length > 0 && (
-						<div className="flex flex-wrap gap-2 mt-4">
-							{post.tags.map((tag) => (
-								<span
-									key={tag}
-									className="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm font-medium"
-								>
-									{tag}
-								</span>
-							))}
-						</div>
-					)}
 				</div>
 			</div>
 

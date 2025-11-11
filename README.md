@@ -214,7 +214,9 @@ i18n (다국어 지원)
 - [x]  토론하기 페이지 - 우측 가이드라인 제거
 - [x]  토론하기 페이지 - main component block 사이즈 늘리기
 - [x]  토론하기 페이지 - main component block 필요없는 내용 지우기
-- [x]  토론하기 페이지 - main component block 세부 페이지 UI AI로 뽑아내기 
+- [x]  토론하기 페이지 - 세부 페이지 UI AI로 뽑아내기 
+- [x]  토론하기 페이지 - 세부 페이지 필요없는 component 삭제
+- [x]  토론하기 페이지 - 세부 페이지 토론하기 글 list로 변경
 - [ ]  글 상세 페이지
 
 ### 2. 핵심 로직 기능

@@ -20,6 +20,11 @@ export interface DebatePost {
     url: string;
     description: string;
   }[];
+  // debates: {
+	//   title: string;
+	//   url: string;
+	//   description: string;
+  // };
 }
 
 export default function DebatesPage() {
