@@ -227,7 +227,7 @@ i18n (다국어 지원)
 - [x]  service - part name으로 UUID 불러오기 api
 - [x]  service - part ID로 category 불러오기 api
 - [x]  service - category Id로 post 데이터 불러오기
-- [ ]  service - post Id로 post의 상세 데이터 전부 불러오기
+- [x]  service - post Id로 post의 상세 데이터 전부 불러오기
 - [ ]  common page - supabase api call 코드 반영
 - [ ]  BE page - supabase api call 코드 반영
 - [ ]  FE page - supabase api call 코드 반영
