@@ -223,7 +223,7 @@ i18n (다국어 지원)
 ### 2. 핵심 로직 기능
 
 - [x]  made by에 github link 연결시키기
-- [ ]  supabase config file 설정
+- [x]  supabase config file 설정
 - [ ]  common page - supabase api call 코드 반영
 - [ ]  BE page - supabase api call 코드 반영
 - [ ]  FE page - supabase api call 코드 반영
