@@ -218,14 +218,16 @@ i18n (다국어 지원)
 - [x]  토론하기 페이지 - 세부 페이지 UI AI로 뽑아내기 
 - [x]  토론하기 페이지 - 세부 페이지 필요없는 component 삭제
 - [x]  토론하기 페이지 - 세부 페이지 토론하기 글 list로 변경
-- [x]  토론하기 페이지 - 세부 페이지 버튼 click area 변경 
-- [ ]  글 상세 페이지
+- [x]  토론하기 페이지 - 세부 페이지 버튼 click area 변경
 
 ### 2. 핵심 로직 기능
 
 - [x]  made by에 github link 연결시키기
-- [ ]  supabase 구축
-- [ ]  supabase api call 코드 반영
+- [ ]  supabase config file 설정
+- [ ]  common page - supabase api call 코드 반영
+- [ ]  BE page - supabase api call 코드 반영
+- [ ]  FE page - supabase api call 코드 반영
+- [ ]  AN page - supabase api call 코드 반영
 
 
 ### 3. util
