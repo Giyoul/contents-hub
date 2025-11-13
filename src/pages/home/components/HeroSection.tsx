@@ -1,5 +1,4 @@
-
-import { Link } from 'react-router-dom';
+import {Link} from 'react-router-dom';
 import Button from '../../../components/base/Button';
 
 export default function HeroSection() {

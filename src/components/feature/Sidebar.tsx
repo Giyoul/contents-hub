@@ -1,6 +1,6 @@
-import { Link, useLocation } from 'react-router-dom';
-import { useEffect, useState } from 'react';
-import { getCategoriesForPathAsync } from "@/data/categories.ts";
+import {Link, useLocation} from 'react-router-dom';
+import {useEffect, useState} from 'react';
+import {getCategoriesForPathAsync} from "@/data/categories.ts";
 
 export interface Category {
 	id: string;
@@ -13,7 +13,7 @@ interface SidebarProps {
 	categories?: Category[];
 }
 
-export default function Sidebar({ categories: propCategories }: SidebarProps) {
+export default function Sidebar({categories: propCategories}: SidebarProps) {
 	const location = useLocation();
 	const [categories, setCategories] = useState<Category[]>(propCategories || []);
 	const [loading, setLoading] = useState(!propCategories);
@@ -27,6 +27,7 @@ export default function Sidebar({ categories: propCategories }: SidebarProps) {
 				setCategories(data);
 				setLoading(false);
 			}
+
 			loadCategories();
 		} else {
 			setCategories(propCategories);
@@ -39,7 +40,8 @@ export default function Sidebar({ categories: propCategories }: SidebarProps) {
 
 	if (loading) {
 		return (
-			<aside className="w-64 bg-white border-r border-gray-200 h-[calc(100vh-4rem)] sticky top-16 overflow-y-auto">
+			<aside
+				className="w-64 bg-white border-r border-gray-200 h-[calc(100vh-4rem)] sticky top-16 overflow-y-auto">
 				<nav className="p-4">
 					<div className="text-gray-500 text-sm">로딩 중...</div>
 				</nav>

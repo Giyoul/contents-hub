@@ -1,12 +1,12 @@
-import { ReactNode } from 'react';
-import Sidebar, { Category } from '../feature/Sidebar';
+import {ReactNode} from 'react';
+import Sidebar, {Category} from '../feature/Sidebar';
 
 interface pageWithSidebarProps {
 	children: ReactNode;
 	categories?: Category[];
 }
 
-export default function PageWithSidebar({ children, categories }: pageWithSidebarProps) {
+export default function PageWithSidebar({children, categories}: pageWithSidebarProps) {
 	return (
 		<div className="flex w-full">
 			<Sidebar categories={categories}/>

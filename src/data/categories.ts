@@ -1,6 +1,6 @@
-import type { Category } from "@/components/feature/Sidebar.tsx";
-import { getPartIdByName } from "@/service/partService.ts";
-import { getCategoriesByPartID } from "@/service/categoryService.ts";
+import type {Category} from "@/components/feature/Sidebar.tsx";
+import {getPartIdByName} from "@/service/partService.ts";
+import {getCategoriesByPartID} from "@/service/categoryService.ts";
 
 function getPartNameFromPath(path: string): string | null {
 	if (path.startsWith('/common')) return 'common';
@@ -20,7 +20,7 @@ export async function getCategoriesForPathAsync(path: string): Promise<Category[
 		const partId = Array.isArray(partIdResult)
 			? (partIdResult.length > 0 ? partIdResult[0].id : null)
 			: (partIdResult?.id || partIdResult);
-		
+
 		if (!partId) return [];
 
 		const categories = await getCategoriesByPartID(partId);
@@ -28,6 +28,7 @@ export async function getCategoriesForPathAsync(path: string): Promise<Category[
 		return categories.map((category: any) => ({
 			id: category.id,
 			name: category.name,
+			// 아래는 추후 수정해야 함.
 			path: category.path || `${path}/${category.slug || category.id}`,
 		}));
 	} catch (error) {

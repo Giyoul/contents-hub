@@ -1,18 +1,23 @@
-import type { DebatePost } from '../page';
+import type {DebatePost} from '../page';
 
 interface PostDetailProps {
 	post: DebatePost;
 	onBack: () => void;
 }
 
-export default function PostDetail({ post, onBack }: PostDetailProps) {
+export default function PostDetail({post, onBack}: PostDetailProps) {
 	const getResourceIcon = (type: string) => {
 		switch (type) {
-			case 'article': return 'ri-article-line';
-			case 'video': return 'ri-video-line';
-			case 'research': return 'ri-file-text-line';
-			case 'news': return 'ri-newspaper-line';
-			default: return 'ri-link';
+			case 'article':
+				return 'ri-article-line';
+			case 'video':
+				return 'ri-video-line';
+			case 'research':
+				return 'ri-file-text-line';
+			case 'news':
+				return 'ri-newspaper-line';
+			default:
+				return 'ri-link';
 		}
 	};
 

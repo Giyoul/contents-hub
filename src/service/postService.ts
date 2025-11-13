@@ -1,7 +1,7 @@
-import { supabase } from "@/lib/supabase.ts";
+import {supabase} from "@/lib/supabase.ts";
 
 export async function getPostByCategoryId(categoryId: string): Promise<any> {
-	const { data, error } = await supabase
+	const {data, error} = await supabase
 		.from('post')
 		.select('*')
 		.eq('category_id', categoryId)
@@ -15,7 +15,7 @@ export async function getPostByCategoryId(categoryId: string): Promise<any> {
 }
 
 export async function getPostByID(postId: string): Promise<any> {
-	const { data, error } = await supabase
+	const {data, error} = await supabase
 		.from('post')
 		.select('*, discussion (*), resource (*)')
 		.eq('id', postId)
