@@ -114,6 +114,26 @@ export const categoryData: Record<string, Category[]> = {
 	],
 };
 
+export async function getCategoriesForPathAsync(path: string): Promise<Category[]> {
+	const partName = getPartNameFromPath(path);
+	if (!partName) return [];
+
+	try {
+		const partId = await getPartIdByName(partName);
+		if(!partId) return [];
+
+		const categories = await getCategoriesByPartID(partId);
+
+		return categories.map((category: any) => ({
+			id: category.id,
+			name: category.name
+		}));
+	} catch (error) {
+		console.error(error);
+		return [];
+	}
+}
+
 // 현재 경로에 맞는 카테고리 목록을 반환하는 함수
 export function getCategoriesForPath(path: string): Category[] {
 	if (path.startsWith('/common')) {
