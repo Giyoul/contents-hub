@@ -5,7 +5,6 @@ import { lazy } from 'react';
 // lazy는 필요할때만 로드하도록
 const HomePage = lazy(() => import('../pages/home/page'));
 const DebatesPage = lazy(() => import('../pages/debates/page'));
-const SharedPage = lazy(() => import('../pages/shared/page'));
 const NotFoundPage = lazy(() => import('../pages/NotFound'));
 
 const routes: RouteObject[] = [
@@ -19,15 +18,15 @@ const routes: RouteObject[] = [
 	},
 	{
 		path: '/be',
-		element: <SharedPage/>,
+		element: <DebatesPage/>,
 	},
 	{
 		path: '/fe',
-		element: <SharedPage/>,
+		element: <DebatesPage/>,
 	},
 	{
 		path: '/an',
-		element: <SharedPage/>,
+		element: <DebatesPage/>,
 	},
 	{
 		path: '*',

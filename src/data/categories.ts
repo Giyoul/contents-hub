@@ -1,4 +1,16 @@
 import { Category } from '../components/feature/Sidebar';
+import { getPartIdByName } from "@/service/partService.ts";
+import { getCategoriesByPartID } from "@/service/categoryService.ts";
+
+function getPartNameFromPath(path: string): string | null {
+	if (path.startsWith('/common')) return 'common';
+	if (path.startsWith('/fe')) return 'fe';
+	if (path.startsWith('/be')) return 'be';
+	if (path.startsWith('/an')) return 'an';
+	return null;
+}
+
+
 
 // 카테고리 데이터 구조
 // 실제 데이터는 추후 Supabase나 JSON 파일에서 가져올 예정
