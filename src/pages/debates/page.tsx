@@ -3,7 +3,6 @@ import { useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import Header from '../../components/feature/Header';
 import PageWithSidebar from '../../components/layout/PageWithSidebar';
-import { getCategoriesForPath } from '../../data/categories';
 import PostDetail from './components/PostDetail';
 
 export interface DebatePost {
@@ -29,7 +28,7 @@ export interface DebatePost {
 
 export default function DebatesPage() {
   const location = useLocation();
-  const categories = getCategoriesForPath(location.pathname);
+  // categories prop을 전달하지 않으면 Sidebar가 자동으로 로드함
   const [selectedPost, setSelectedPost] = useState<DebatePost | null>(null);
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedTag, setSelectedTag] = useState('');
@@ -173,7 +172,7 @@ export default function DebatesPage() {
 	return (
 		<div className="min-h-screen bg-gray-50">
 			<Header/>
-			<PageWithSidebar categories={categories}>
+			<PageWithSidebar>
 				<div className="w-full pl-4 sm:pl-6 lg:pl-8 pr-8 py-8">
 					{selectedPost ? (
 						<PostDetail post={selectedPost} onBack={handleBack} />

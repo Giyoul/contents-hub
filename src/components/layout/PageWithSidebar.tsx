@@ -3,7 +3,7 @@ import Sidebar, { Category } from '../feature/Sidebar';
 
 interface pageWithSidebarProps {
 	children: ReactNode;
-	categories: Category[];
+	categories?: Category[];
 }
 
 export default function PageWithSidebar({ children, categories }: pageWithSidebarProps) {
