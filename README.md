@@ -232,7 +232,7 @@ i18n (다국어 지원)
 - [x]  service - post Id로 post의 상세 데이터 전부 불러오기
 - [x]  경로에서 part name 추출
 - [x]  side bar - category api call code 반영
-- [ ]  side bar - 컴포넌트 데이터 로드
+- [x]  side bar - 컴포넌트 데이터 로드
 - [ ]  common page - supabase api call 코드 반영
 - [ ]  BE page - supabase api call 코드 반영
 - [ ]  FE page - supabase api call 코드 반영

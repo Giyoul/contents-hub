@@ -1,5 +1,6 @@
 import { Link, useLocation } from 'react-router-dom';
-import * as path from "node:path";
+import { useEffect, useState } from 'react';
+import { getCategoriesForPathAsync } from "@/data/categories.ts";
 
 export interface Category {
 	id: string;
@@ -9,15 +10,42 @@ export interface Category {
 }
 
 interface SidebarProps {
-	categories: Category[];
+	categories?: Category[];
 }
 
-export default function Sidebar({ categories }: SidebarProps) {
+export default function Sidebar({ categories: propCategories }: SidebarProps) {
 	const location = useLocation();
+	const [categories, setCategories] = useState<Category[]>(propCategories || []);
+	const [loading, setLoading] = useState(!propCategories);
+
+	useEffect(() => {
+		// prop으로 category가 전달되지 않았을 때에만 API를 호출하는 것이다.
+		if (!propCategories) {
+			async function loadCategories() {
+				setLoading(true);
+				const data = await getCategoriesForPathAsync(location.pathname);
+				setCategories(data);
+				setLoading(false);
+			}
+			loadCategories();
+		} else {
+			setCategories(propCategories);
+		}
+	}, [location.pathname, propCategories]);
 
 	const isActive = (path: string) => {
 		return location.pathname === path || location.pathname.startsWith(`${path}/`);
 	};
+
+	if (loading) {
+		return (
+			<aside className="w-64 bg-white border-r border-gray-200 h-[calc(100vh-4rem)] sticky top-16 overflow-y-auto">
+				<nav className="p-4">
+					<div className="text-gray-500 text-sm">로딩 중...</div>
+				</nav>
+			</aside>
+		);
+	}
 
 	return (
 		<aside className="w-64 bg-white border-r border-gray-200 h-[calc(100vh-4rem)] sticky top-16 overflow-y-auto">
