@@ -1,6 +1,6 @@
 import {supabase} from "@/lib/supabase.ts";
 
-export async function getCategoriesByPartID(partID: string): Promise<any[]> {
+export async function getCategoriesByPartID(partID: number): Promise<any[]> {
 	const {data, error} = await supabase
 		.from('category')
 		.select('*')

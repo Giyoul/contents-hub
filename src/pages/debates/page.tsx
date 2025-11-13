@@ -1,8 +1,9 @@
-import {useState} from 'react';
+import {useState, useEffect} from 'react';
 import {useLocation} from 'react-router-dom';
 import Header from '../../components/feature/Header';
 import PageWithSidebar from '../../components/layout/PageWithSidebar';
 import PostDetail from './components/PostDetail';
+import {getPostByCategoryId} from "@/service/postService.ts";
 
 export interface DebatePost {
 	id: string;
@@ -31,6 +32,45 @@ export default function DebatesPage() {
 	const [selectedPost, setSelectedPost] = useState<DebatePost | null>(null);
 	const [searchTerm, setSearchTerm] = useState('');
 	const [selectedTag, setSelectedTag] = useState('');
+
+	const [debatePosts, setDebatePosts] = useState<DebatePost[]>([]);
+	const [loading, setLoading] = useState(true);
+	const [error, setError] = useState<string | null>(null);
+
+	useEffect(() => {
+		async function loadPosts() {
+			try {
+				setLoading(true);
+				setError(null);
+
+				const pathParts = location.pathname.split('/').filter(Boolean);
+				const categoryId = pathParts[pathParts.length - 1];
+
+				if (!categoryId || isNaN(Number(categoryId))) {
+					console.warn('유효한 category ID가 없습니다.');
+					setDebatePosts([]);
+					setLoading(false);
+					return;
+				}
+
+				const posts = await getPostByCategoryId(Number(categoryId));
+
+				const transformedPosts: DebatePost[] = posts.map((post: any) => ({
+					id: post.id,
+					title: post.title,
+					description: post.description
+				}));
+
+				setDebatePosts(transformedPosts);
+			} catch (err) {
+				console.error(err);
+				setDebatePosts([]);
+			} finally {
+				setLoading(false);
+			}
+		}
+		loadPosts();
+	}, [location.pathname]);
 
 	const debatePosts: DebatePost[] = [
 		{

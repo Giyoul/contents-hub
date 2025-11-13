@@ -1,35 +1,26 @@
 import type {Category} from "@/components/feature/Sidebar.tsx";
-import {getPartIdByName} from "@/service/partService.ts";
 import {getCategoriesByPartID} from "@/service/categoryService.ts";
 
-function getPartNameFromPath(path: string): string | null {
-	if (path.startsWith('/common')) return 'common';
-	if (path.startsWith('/fe')) return 'fe';
-	if (path.startsWith('/be')) return 'be';
-	if (path.startsWith('/an')) return 'an';
+function getPartIdFromPath(path: string): number | null {
+	if (path.startsWith('/common')) return 1;
+	if (path.startsWith('/be')) return 2;
+	if (path.startsWith('/fe')) return 3;
+	if (path.startsWith('/an')) return 4;
 	return null;
 }
 
 export async function getCategoriesForPathAsync(path: string): Promise<Category[]> {
-	const partName = getPartNameFromPath(path);
-	if (!partName) return [];
+	const partId = getPartIdFromPath(path);
+	if (!partId) return [];
 
 	try {
-		const partIdResult = await getPartIdByName(partName);
-		// getPartIdByName이 배열을 반환하므로 처리
-		const partId = Array.isArray(partIdResult)
-			? (partIdResult.length > 0 ? partIdResult[0].id : null)
-			: (partIdResult?.id || partIdResult);
-
-		if (!partId) return [];
-
 		const categories = await getCategoriesByPartID(partId);
 
 		return categories.map((category: any) => ({
 			id: category.id,
 			name: category.name,
 			// 아래는 추후 수정해야 함.
-			path: category.path || `${path}/${category.slug || category.id}`,
+			path: category.path || `${path}/${category.id}`,
 		}));
 	} catch (error) {
 		console.error(error);

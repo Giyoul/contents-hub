@@ -1,6 +1,6 @@
 import {supabase} from "@/lib/supabase.ts";
 
-export async function getPostByCategoryId(categoryId: string): Promise<any> {
+export async function getPostByCategoryId(categoryId: number): Promise<any> {
 	const {data, error} = await supabase
 		.from('post')
 		.select('*')
@@ -14,7 +14,7 @@ export async function getPostByCategoryId(categoryId: string): Promise<any> {
 	return data || [];
 }
 
-export async function getPostByID(postId: string): Promise<any> {
+export async function getPostByID(postId: number): Promise<any> {
 	const {data, error} = await supabase
 		.from('post')
 		.select('*, discussion (*), resource (*)')

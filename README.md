@@ -221,6 +221,7 @@ i18n (다국어 지원)
 - [x]  토론하기 페이지 - 세부 페이지 버튼 click area 변경
 - [x]  FE 페이지 - UI BE page와 통일시키기
 - [x]  AN 페이지 - UI BE page와 통일시키기
+- [ ]  common 페이지 - 로딩중 UI
 
 ### 2. 핵심 로직 기능
 
@@ -230,9 +231,12 @@ i18n (다국어 지원)
 - [x]  service - part ID로 category 불러오기 api
 - [x]  service - category Id로 post 데이터 불러오기
 - [x]  service - post Id로 post의 상세 데이터 전부 불러오기
+- [x]  service - category 불러오기 api 삭제
+- [x]  service - category 불러오기 api category get categories에서 parsing하도록 변경
 - [x]  경로에서 part name 추출
 - [x]  side bar - category api call code 반영
 - [x]  side bar - 컴포넌트 데이터 로드
+- [x]  post name & description api call 반영
 - [ ]  common page - supabase api call 코드 반영
 - [ ]  BE page - supabase api call 코드 반영
 - [ ]  FE page - supabase api call 코드 반영
@@ -241,8 +245,8 @@ i18n (다국어 지원)
 
 ### 3. util
 - [x]  router 설정
-- [ ]  FE page router 설정
-- [ ]  AN page router 설정
+- [x]  FE page router 설정
+- [x]  AN page router 설정
 
 ---
 
