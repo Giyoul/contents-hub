@@ -219,8 +219,8 @@ i18n (다국어 지원)
 - [x]  토론하기 페이지 - 세부 페이지 필요없는 component 삭제
 - [x]  토론하기 페이지 - 세부 페이지 토론하기 글 list로 변경
 - [x]  토론하기 페이지 - 세부 페이지 버튼 click area 변경
-- [ ]  FE 페이지 - UI BE page와 통일시키기
-- [ ]  AN 페이지 - UI BE page와 통일시키기
+- [x]  FE 페이지 - UI BE page와 통일시키기
+- [x]  AN 페이지 - UI BE page와 통일시키기
 
 ### 2. 핵심 로직 기능
 
