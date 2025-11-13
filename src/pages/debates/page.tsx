@@ -56,9 +56,15 @@ export default function DebatesPage() {
 				const posts = await getPostByCategoryId(Number(categoryId));
 
 				const transformedPosts: DebatePost[] = posts.map((post: any) => ({
-					id: post.id,
-					title: post.title,
-					description: post.description
+					id: String(post.id), // number를 string으로 변환
+					title: post.title || '제목 없음',
+					author: post.author || 'Unknown',
+					timestamp: post.created_at || post.timestamp || new Date().toISOString(),
+					preview: post.description || post.preview || post.content?.substring(0, 100) || '',
+					tags: post.tags || [],
+					discordLink: post.discord_link || post.discordLink || '',
+					resources: post.resources || [],
+					debates: post.debates || [],
 				}));
 
 				setDebatePosts(transformedPosts);
@@ -69,6 +75,7 @@ export default function DebatesPage() {
 				setLoading(false);
 			}
 		}
+
 		loadPosts();
 	}, [location.pathname]);
 

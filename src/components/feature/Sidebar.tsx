@@ -59,8 +59,8 @@ export default function Sidebar({categories: propCategories}: SidebarProps) {
 								to={category.path}
 								className={`block px-4 py-2 rounded-md text-sm font-medium transition-all duration-200 ${
 									isActive(category.path)
-										? 'bg-blue-50 text-blue-600'
-										: 'text-gray-700 hover:bg-gray-100 hover:text-gray-900'
+										? 'text-blue-600 bg-blue-50 font-semibold'
+										: 'text-gray-600 hover:text-gray-900 hover:bg-gray-100'
 								}`}
 							>
 								{category.name}

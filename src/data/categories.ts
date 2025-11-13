@@ -16,11 +16,15 @@ export async function getCategoriesForPathAsync(path: string): Promise<Category[
 	try {
 		const categories = await getCategoriesByPartID(partId);
 
+		// 현재 경로에서 part 부분만 추출 (예: /common/1 -> /common)
+		const pathParts = path.split('/').filter(Boolean);
+		const partPath = pathParts.length > 0 ? `/${pathParts[0]}` : path;
+
 		return categories.map((category: any) => ({
 			id: category.id,
 			name: category.name,
-			// 아래는 추후 수정해야 함.
-			path: category.path || `${path}/${category.id}`,
+			// part 경로에 category.id를 추가 (예: /common/1)
+			path: category.path || `${partPath}/${category.id}`,
 		}));
 	} catch (error) {
 		console.error(error);
