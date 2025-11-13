@@ -224,10 +224,8 @@ i18n (다국어 지원)
 
 - [x]  made by에 github link 연결시키기
 - [x]  supabase config file 설정
-- [ ]  service - common part category 불러오기 api
-- [ ]  service - be part category 불러오기 api
-- [ ]  service - fe part category 불러오기 api
-- [ ]  service - an part category 불러오기 api
+- [ ]  service - part name으로 UUID 불러오기 api
+- [x]  service - category 불러오기 api
 - [ ]  service - category의 id, title, description 불러오기
 - [ ]  service - post의 데이터 전부 불러오기
 - [ ]  common page - supabase api call 코드 반영
