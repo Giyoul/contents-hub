@@ -46,8 +46,8 @@ export default function DebatesPage() {
 				const pathParts = location.pathname.split('/').filter(Boolean);
 				const categoryId = pathParts[pathParts.length - 1];
 
+				// categoryId가 없거나 유효하지 않으면 빈 배열로 설정하고 로딩 종료
 				if (!categoryId || isNaN(Number(categoryId))) {
-					console.warn('유효한 category ID가 없습니다.');
 					setDebatePosts([]);
 					setLoading(false);
 					return;
@@ -103,26 +103,32 @@ export default function DebatesPage() {
 						<PostDetail post={selectedPost} onBack={handleBack}/>
 					) : (
 						<div className="w-full">
-							<div className="space-y-6">
-								{filteredPosts.map((post) => (
-									<div
-										key={post.id}
-										onClick={() => handlePostClick(post)}
-										className="bg-white rounded-xl border border-gray-200 shadow-sm hover:shadow-md transition-all duration-200 p-6 cursor-pointer hover:border-blue-300"
-									>
-										<div className="flex items-start justify-between mb-3">
-											<h3 className="text-xl font-semibold text-gray-900 hover:text-blue-600 transition-colors">
-												{post.title}
-											</h3>
-											<i className="ri-discord-fill text-blue-600 text-lg ml-2 flex-shrink-0"></i>
-										</div>
+							{!loading && filteredPosts.length === 0 ? (
+								<div className="text-center py-12">
+									<div className="text-gray-500 text-lg">카테고리를 선택해주세요</div>
+								</div>
+							) : (
+								<div className="space-y-6">
+									{filteredPosts.map((post) => (
+										<div
+											key={post.id}
+											onClick={() => handlePostClick(post)}
+											className="bg-white rounded-xl border border-gray-200 shadow-sm hover:shadow-md transition-all duration-200 p-6 cursor-pointer hover:border-blue-300"
+										>
+											<div className="flex items-start justify-between mb-3">
+												<h3 className="text-xl font-semibold text-gray-900 hover:text-blue-600 transition-colors">
+													{post.title}
+												</h3>
+												<i className="ri-discord-fill text-blue-600 text-lg ml-2 flex-shrink-0"></i>
+											</div>
 
-										<p className="text-gray-600 mb-4 leading-relaxed">
-											{post.preview}
-										</p>
-									</div>
-								))}
-							</div>
+											<p className="text-gray-600 mb-4 leading-relaxed">
+												{post.preview}
+											</p>
+										</div>
+									))}
+								</div>
+							)}
 						</div>
 					)}
 				</div>

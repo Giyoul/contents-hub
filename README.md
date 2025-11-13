@@ -220,6 +220,7 @@ i18n (다국어 지원)
 - [x]  토론하기 페이지 - 세부 페이지 필요없는 component 삭제
 - [x]  토론하기 페이지 - 세부 페이지 토론하기 글 list로 변경
 - [x]  토론하기 페이지 - 세부 페이지 버튼 click area 변경
+- [x]  토론하기 페이지 - 카테고리 선택 안했을 시 메시지
 - [x]  FE 페이지 - UI BE page와 통일시키기
 - [x]  AN 페이지 - UI BE page와 통일시키기
 - [x]  common 페이지 - 로딩중 UI
@@ -238,10 +239,10 @@ i18n (다국어 지원)
 - [x]  side bar - category api call code 반영
 - [x]  side bar - 컴포넌트 데이터 로드
 - [x]  post name & description api call 반영
-- [ ]  common page - supabase api call 코드 반영
-- [ ]  BE page - supabase api call 코드 반영
-- [ ]  FE page - supabase api call 코드 반영
-- [ ]  AN page - supabase api call 코드 반영
+- [x]  common page - supabase api call 코드 반영
+- [x]  BE page - supabase api call 코드 반영
+- [x]  FE page - supabase api call 코드 반영
+- [x]  AN page - supabase api call 코드 반영
 
 
 ### 3. util
