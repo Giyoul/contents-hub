@@ -310,8 +310,6 @@ thumb
 sketch
 
 # 환경 변수
-.env
-.env.local
 .env.*.local
 
 # Firebase
