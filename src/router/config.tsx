@@ -13,19 +13,19 @@ const routes: RouteObject[] = [
 		element: <HomePage/>,
 	},
 	{
-		path: '/common',
+		path: '/common/*',
 		element: <DebatesPage/>,
 	},
 	{
-		path: '/be',
+		path: '/be/*',
 		element: <DebatesPage/>,
 	},
 	{
-		path: '/fe',
+		path: '/fe/*',
 		element: <DebatesPage/>,
 	},
 	{
-		path: '/an',
+		path: '/an/*',
 		element: <DebatesPage/>,
 	},
 	{

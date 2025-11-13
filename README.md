@@ -221,7 +221,7 @@ i18n (다국어 지원)
 - [x]  토론하기 페이지 - 세부 페이지 버튼 click area 변경
 - [x]  FE 페이지 - UI BE page와 통일시키기
 - [x]  AN 페이지 - UI BE page와 통일시키기
-- [ ]  common 페이지 - 로딩중 UI
+- [x]  common 페이지 - 로딩중 UI
 
 ### 2. 핵심 로직 기능
 
