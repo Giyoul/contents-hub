@@ -81,11 +81,7 @@
 
 ## 프로젝트 구조
 
-<추후 업데이트 예정>
-
-```markdown
-<초기 구조>
-
+```
 src/
 ├── main.tsx                    # 프로그램 진입점
 ├── App.tsx                     # 루트 컴포넌트
@@ -93,45 +89,55 @@ src/
 │
 ├── components/                 # 공통 컴포넌트
 │   ├── base/                   # 기본 컴포넌트
-│   │   ├── Button.tsx          # 버튼 컴포넌트
-│   │   └── Card.tsx            # 카드 컴포넌트
-│   └── feature/                # 기능 컴포넌트
-│       ├── Header.tsx          # 헤더 네비게이션
-│       └── Footer.tsx          # 푸터
+│   │   └── Button.tsx          # 버튼 컴포넌트
+│   ├── feature/                # 기능 컴포넌트
+│   │   ├── Header.tsx          # 헤더 네비게이션
+│   │   └── Sidebar.tsx         # 사이드바 (카테고리 목록)
+│   └── layout/                 # 레이아웃 컴포넌트
+│       └── PageWithSidebar.tsx # 사이드바 포함 레이아웃
 │
 ├── pages/                      # 페이지 컴포넌트
 │   ├── home/                   # 홈 페이지
 │   │   ├── page.tsx
-│   │   └── components/         # 홈 페이지 전용 컴포넌트
-│   │       └── HeroSection.tsx
+│   │   └── components/
+│   │       └── HeroSection.tsx # 히어로 섹션
 │   ├── debates/                # 토론 페이지
-│   │   └── page.tsx
-│   ├── shared/                 # 공유 콘텐츠 페이지
-│   │   └── page.tsx
+│   │   ├── page.tsx            # 토론 글 목록 페이지
+│   │   └── components/
+│   │       └── PostDetail.tsx  # 토론 글 상세 페이지
 │   └── NotFound.tsx            # 404 페이지
 │
 ├── router/                     # 라우팅 설정
 │   ├── index.ts                # 라우터 설정 및 네비게이션
 │   └── config.tsx              # 라우트 정의
 │
-└── i18n/                       # 다국어 설정
-    ├── index.ts                # i18n 초기화
-    └── local/                  # 번역 파일
-        └── index.ts
+├── service/                    # API 서비스
+│   ├── categoryService.ts      # 카테고리 관련 API
+│   └── postService.ts          # 포스트 관련 API
+│
+├── data/                       # 데이터 처리
+│   └── categories.ts           # 카테고리 데이터 처리 로직
+│
+└── lib/                        # 라이브러리 설정
+    └── supabase.ts             # Supabase 클라이언트 설정
 ```
 
 ### 아키텍처 구조
 
-```markdown
+```
 App (루트)
   ↓
 Router (라우팅 관리)
   ↓
 Pages (페이지 컴포넌트)
+  ├── HomePage (홈)
+  └── DebatesPage (토론 목록/상세)
+      ├── Sidebar (카테고리 네비게이션)
+      └── PostDetail (상세 뷰)
   ↓
-Components (재사용 가능한 컴포넌트)
+Service (API 호출)
   ↓
-i18n (다국어 지원)
+Supabase (데이터베이스)
 ```
 
 ---
@@ -145,10 +151,14 @@ i18n (다국어 지원)
 - **Vite** - 빌드 도구 및 개발 서버
 - **React Router** - 클라이언트 사이드 라우팅
 - **Tailwind CSS** - 유틸리티 기반 CSS 프레임워크
+- **Remix Icon** - 아이콘 라이브러리
 
-### 의존성 (향후 사용 예정)
+### 백엔드/데이터베이스
 
-- **Supabase** - 정적 데이터 저장 (서버 비용 없이 사용 가능한 범위 내)
+- **Supabase** - 백엔드 서비스 및 데이터베이스
+  - PostgreSQL 데이터베이스
+  - RESTful API 자동 생성
+  - 서버 비용 없이 사용 가능한 범위 내
 
 > **참고**: 인증 기능은 제공하지 않으며, 서버 비용이 발생하지 않는 구조를 채택합니다.
 
@@ -160,21 +170,21 @@ i18n (다국어 지원)
 
 #### 1. 콘텐츠 분류 기능
 
-- [ ] 디스코드 '토론하기' 채널의 글을 자동/수동으로 수집
-- [ ] 글을 다음 기준으로 분류:
+- [x] 글을 다음 기준으로 분류:
   - 상위 카테고리: **공통 / BE / FE / AN**
   - 하위 카테고리: **기본 설계 / 검증 / … 세부 카테고리**
-- [ ] 사용자는 카테고리별로 토론 글 목록을 조회 가능
+- [x] 사용자는 카테고리별로 토론 글 목록을 조회 가능
+- [ ] 디스코드 '토론하기' 채널의 글을 자동/수동으로 수집 (수동 입력)
 
 #### 2. 선수 지식 추천 기능
 
-- [ ] 각 하위 카테고리에 대해 필요한 선수 지식 목록 제공
-- [ ] 선수 지식마다 **블로그·문서·강의 링크** 연결
+- [x] 각 포스트에 대해 필요한 선수 지식 목록 제공
+- [x] 선수 지식마다 **블로그·문서·강의 링크** 연결
 
 #### 3. 단계별 학습 경로 제공 기능
 
-- [ ] "이 토론을 보기 위해 필요한 지식" 목록을 단계적으로 제공
-- [ ] 선수 지식 제공 아래에 해당 선수 지식을 전부 학습했을 시에 이해하고 참여할 수 있는 토론 글(디스코드 링크) 표시
+- [x] "이 토론을 보기 위해 필요한 지식" 목록을 단계적으로 제공
+- [x] 선수 지식 제공 아래에 해당 선수 지식을 전부 학습했을 시에 이해하고 참여할 수 있는 토론 글(디스코드 링크) 표시
 
 ### Non-Functional Requirements
 
@@ -185,8 +195,8 @@ i18n (다국어 지원)
 
 #### 확장성
 
-- [ ] 새로운 카테고리를 추가할 수 있는 구조
-- [ ] 토론글 증가에도 서비스 성능 유지
+- [x] 새로운 카테고리를 추가할 수 있는 구조 (Supabase 데이터베이스 기반)
+- [x] 토론글 증가에도 서비스 성능 유지 (Supabase의 자동 스케일링)
 
 #### 제약 조건
 
@@ -199,58 +209,53 @@ i18n (다국어 지원)
 
 ## 구현 기능 목록
 
-### 1. UI
+### 1. UI/UX
 
-- [x]  헤더 - 리디자인
-- [x]  헤더 - hover background color 변경
-- [x]  모바일 뷰 햄버거 버튼 구성 수정
-- [x]  푸터 리디자인
-- [x]  온보딩 페이지 모바일 뷰 히든 컴포넌트 설정
-- [x]  온보딩 페이지 - background image 삭제
-- [x]  온보딩 페이지 - 홈페이지 소개 텍스트 수정
-- [x]  온보딩 페이지 - 컴포넌트 재배치
-- [x]  사이드바 - 초기 UI AI로 뽑아내기
-- [x]  사이드바 - 필요없는 UI 제거
-- [x]  사이드바 - 아래로 내려도 내려가지 않도록 고정
-- [x]  사이드바 - background color 설정
-- [x]  토론하기 페이지 - 우측 가이드라인 제거
-- [x]  토론하기 페이지 - main component block 사이즈 늘리기
-- [x]  토론하기 페이지 - main component block 필요없는 내용 지우기
-- [x]  토론하기 페이지 - 세부 페이지 UI AI로 뽑아내기 
-- [x]  토론하기 페이지 - 세부 페이지 필요없는 component 삭제
-- [x]  토론하기 페이지 - 세부 페이지 토론하기 글 list로 변경
-- [x]  토론하기 페이지 - 세부 페이지 버튼 click area 변경
-- [x]  토론하기 페이지 - 카테고리 선택 안했을 시 메시지
-- [x]  FE 페이지 - UI BE page와 통일시키기
-- [x]  AN 페이지 - UI BE page와 통일시키기
-- [x]  common 페이지 - 로딩중 UI
+- [x] 헤더 네비게이션 (Home, 공통, BE, FE, AN)
+- [x] GitHub 링크 버튼 (Made by 영기)
+- [x] 반응형 모바일 메뉴 (햄버거 버튼)
+- [x] 홈 페이지 히어로 섹션
+- [x] 사이드바 카테고리 네비게이션
+  - [x] 고정 위치 (sticky)
+  - [x] 활성 카테고리 하이라이트
+  - [x] 동적 카테고리 로딩
+- [x] 토론 글 목록 페이지
+  - [x] 카테고리별 글 목록 표시
+  - [x] 카테고리 미선택 시 안내 메시지
+  - [x] 로딩 상태 표시
+- [x] 토론 글 상세 페이지
+  - [x] 뒤로가기 버튼
+  - [x] 상세 내용 표시
+  - [x] 추천 학습 자료 목록
+  - [x] 관련 토론 글 링크
+  - [x] 외부 링크 새 탭 열기
 
-### 2. 핵심 로직 기능
+### 2. 핵심 기능
 
-- [x]  made by에 github link 연결시키기
-- [x]  supabase config file 설정
-- [x]  service - part name으로 UUID 불러오기 api
-- [x]  service - part ID로 category 불러오기 api
-- [x]  service - category Id로 post 데이터 불러오기
-- [x]  service - post Id로 post의 상세 데이터 전부 불러오기
-- [x]  service - category 불러오기 api 삭제
-- [x]  service - category 불러오기 api category get categories에서 parsing하도록 변경
-- [x]  경로에서 part name 추출
-- [x]  side bar - category api call code 반영
-- [x]  side bar - 컴포넌트 데이터 로드
-- [x]  post name & description api call 반영
-- [x]  common page - supabase api call 코드 반영
-- [x]  BE page - supabase api call 코드 반영
-- [x]  FE page - supabase api call 코드 반영
-- [x]  AN page - supabase api call 코드 반영
-- [x]  category나 part 클릭시 detail page 닫히게 설정
+- [x] Supabase 연동
+  - [x] Supabase 클라이언트 설정
+  - [x] Part 데이터 조회
+  - [x] Category 데이터 조회
+  - [x] Post 데이터 조회 (카테고리별)
+  - [x] Post 상세 데이터 조회 (관련 discussion, resource 포함)
+- [x] 동적 라우팅
+  - [x] `/common/*`, `/be/*`, `/fe/*`, `/an/*` 경로 지원
+  - [x] 카테고리 ID 기반 URL 파싱
+- [x] 데이터 처리
+  - [x] 경로에서 Part 이름 추출
+  - [x] Part ID로 카테고리 조회
+  - [x] 카테고리 ID로 포스트 조회
+  - [x] 포스트 상세 정보 변환 및 매핑
+- [x] 사용자 경험
+  - [x] 카테고리/네비게이션 클릭 시 상세 페이지 자동 닫기
+  - [x] 외부 링크 새 탭에서 열기
 
+### 3. 코드 품질
 
-### 3. util
-- [x]  router 설정
-- [x]  FE page router 설정
-- [x]  AN page router 설정
-- [ ]  사용되지 않는 코드 정리
+- [x] TypeScript 타입 정의
+- [x] 컴포넌트 구조화 및 재사용성
+- [x] 사용되지 않는 코드 정리
+- [x] 에러 처리
 
 ---
 
