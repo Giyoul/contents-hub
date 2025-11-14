@@ -250,6 +250,7 @@ i18n (다국어 지원)
 - [x]  router 설정
 - [x]  FE page router 설정
 - [x]  AN page router 설정
+- [ ]  사용되지 않는 코드 정리
 
 ---
 

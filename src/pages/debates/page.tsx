@@ -28,14 +28,9 @@ export interface DebatePost {
 
 export default function DebatesPage() {
 	const location = useLocation();
-	// categories prop을 전달하지 않으면 Sidebar가 자동으로 로드함
 	const [selectedPost, setSelectedPost] = useState<DebatePost | null>(null);
-	const [searchTerm, setSearchTerm] = useState('');
-	const [selectedTag, setSelectedTag] = useState('');
-
 	const [debatePosts, setDebatePosts] = useState<DebatePost[]>([]);
 	const [loading, setLoading] = useState(true);
-	const [error, setError] = useState<string | null>(null);
 
 	useEffect(() => {
 		// URL이 변경되면 detail page 닫기
@@ -44,7 +39,6 @@ export default function DebatesPage() {
 		async function loadPosts() {
 			try {
 				setLoading(true);
-				setError(null);
 
 				const pathParts = location.pathname.split('/').filter(Boolean);
 				const categoryId = pathParts[pathParts.length - 1];
@@ -82,22 +76,13 @@ export default function DebatesPage() {
 		loadPosts();
 	}, [location.pathname]);
 
-	const filteredPosts = debatePosts.filter(post => {
-		const matchesSearch = post.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-			post.preview.toLowerCase().includes(searchTerm.toLowerCase());
-		const matchesTag = !selectedTag || post.tags.includes(selectedTag);
-		return matchesSearch && matchesTag;
-	});
 
 	const handlePostClick = async (post: DebatePost) => {
 		try {
 			setLoading(true);
 			const postDetail = await getPostByID(Number(post.id));
 			
-			console.log('Post detail from Supabase:', postDetail);
-			
 			if (!postDetail) {
-				console.error('Post detail not found');
 				setLoading(false);
 				return;
 			}
@@ -131,10 +116,8 @@ export default function DebatesPage() {
 				})),
 			};
 
-			console.log('Transformed post:', transformedPost);
 			setSelectedPost(transformedPost);
 		} catch (err) {
-			console.error('Error loading post detail:', err);
 			setSelectedPost(post);
 		} finally {
 			setLoading(false);
@@ -154,13 +137,13 @@ export default function DebatesPage() {
 						<PostDetail post={selectedPost} onBack={handleBack}/>
 					) : (
 						<div className="w-full">
-							{!loading && filteredPosts.length === 0 ? (
+							{!loading && debatePosts.length === 0 ? (
 								<div className="text-center py-12">
 									<div className="text-gray-500 text-lg">카테고리를 선택해주세요</div>
 								</div>
 							) : (
 								<div className="space-y-6">
-									{filteredPosts.map((post) => (
+									{debatePosts.map((post) => (
 										<div
 											key={post.id}
 											onClick={() => handlePostClick(post)}

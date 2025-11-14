@@ -32,8 +32,3 @@ export async function getCategoriesForPathAsync(path: string): Promise<Category[
 	}
 }
 
-// 하위 호환성을 위한 동기 함수
-export function getCategoriesForPath(_path: string): Category[] {
-	return [];
-}
-

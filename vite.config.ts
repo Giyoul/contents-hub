@@ -53,13 +53,6 @@ export default defineConfig({
 						'Navigate',
 						'Outlet'
 					]
-				},
-				// React i18n
-				{
-					'react-i18next': [
-						'useTranslation',
-						'Trans'
-					]
 				}
 			],
 			dts: true,
