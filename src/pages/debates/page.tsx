@@ -38,6 +38,9 @@ export default function DebatesPage() {
 	const [error, setError] = useState<string | null>(null);
 
 	useEffect(() => {
+		// URL이 변경되면 detail page 닫기
+		setSelectedPost(null);
+
 		async function loadPosts() {
 			try {
 				setLoading(true);

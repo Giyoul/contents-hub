@@ -243,6 +243,7 @@ i18n (다국어 지원)
 - [x]  BE page - supabase api call 코드 반영
 - [x]  FE page - supabase api call 코드 반영
 - [x]  AN page - supabase api call 코드 반영
+- [x]  category나 part 클릭시 detail page 닫히게 설정
 
 
 ### 3. util
