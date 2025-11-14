@@ -3,7 +3,7 @@ import {useLocation} from 'react-router-dom';
 import Header from '../../components/feature/Header';
 import PageWithSidebar from '../../components/layout/PageWithSidebar';
 import PostDetail from './components/PostDetail';
-import {getPostByCategoryId} from "@/service/postService.ts";
+import {getPostByCategoryId, getPostByID} from "@/service/postService.ts";
 
 export interface DebatePost {
 	id: string;
@@ -86,8 +86,56 @@ export default function DebatesPage() {
 		return matchesSearch && matchesTag;
 	});
 
-	const handlePostClick = (post: DebatePost) => {
-		setSelectedPost(post);
+	const handlePostClick = async (post: DebatePost) => {
+		try {
+			setLoading(true);
+			const postDetail = await getPostByID(Number(post.id));
+			
+			console.log('Post detail from Supabase:', postDetail);
+			
+			if (!postDetail) {
+				console.error('Post detail not found');
+				setLoading(false);
+				return;
+			}
+
+			const resources = Array.isArray(postDetail.resource) 
+				? postDetail.resource 
+				: (postDetail.resources || []);
+			
+			const discussions = Array.isArray(postDetail.discussion) 
+				? postDetail.discussion 
+				: (postDetail.discussions || []);
+
+			const transformedPost: DebatePost = {
+				id: String(postDetail.id),
+				title: postDetail.title || post.title,
+				author: postDetail.author || post.author,
+				timestamp: postDetail.created_at || postDetail.timestamp || post.timestamp,
+				preview: postDetail.description || postDetail.content || post.preview,
+				tags: postDetail.tags || post.tags || [],
+				discordLink: postDetail.discord_link || postDetail.discordLink || post.discordLink,
+				resources: resources.map((res: any) => ({
+					title: res.title || '',
+					type: res.type || 'article',
+					url: res.url || '',
+					description: res.description || '',
+				})),
+				debates: discussions.map((debate: any) => ({
+					title: debate.title || '',
+					url: debate.url || debate.discord_link || '',
+					description: debate.description || '',
+				})),
+			};
+
+			console.log('Transformed post:', transformedPost);
+			setSelectedPost(transformedPost);
+		} catch (err) {
+			console.error('Error loading post detail:', err);
+			setSelectedPost(post);
+		} finally {
+			setLoading(false);
+		}
 	};
 
 	const handleBack = () => {
