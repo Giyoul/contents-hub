@@ -118,12 +118,12 @@ export default function DebatesPage() {
 				resources: resources.map((res: any) => ({
 					title: res.title || '',
 					type: res.type || 'article',
-					url: res.url || '',
+					url: res.link || res.url || '',
 					description: res.description || '',
 				})),
 				debates: discussions.map((debate: any) => ({
 					title: debate.title || '',
-					url: debate.url || debate.discord_link || '',
+					url: debate.link || debate.url || debate.discord_link || '',
 					description: debate.description || '',
 				})),
 			};
