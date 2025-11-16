@@ -22,6 +22,7 @@ export interface DebatePost {
 	debates: {
 		title: string;
 		url: string;
+		author: string;
 		description: string;
 	}[];
 }
@@ -112,6 +113,7 @@ export default function DebatesPage() {
 				debates: discussions.map((debate: any) => ({
 					title: debate.title || '',
 					url: debate.link || debate.url || debate.discord_link || '',
+					author: debate.author || '',
 					description: debate.description || '',
 				})),
 			};

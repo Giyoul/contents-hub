@@ -135,6 +135,9 @@ export default function PostDetail({post, onBack}: PostDetailProps) {
 										<p className="text-sm text-gray-600 mb-3">
 											{debate.description}
 										</p>
+										<p className="text-sm text-gray-600 mb-3">
+											By. {debate.author}
+										</p>
 										<div className="inline-flex items-center text-sm text-blue-600 font-medium">
 											토론 참여하기
 											<i className="ri-external-link-line ml-1"></i>
