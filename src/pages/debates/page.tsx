@@ -15,7 +15,7 @@ export interface DebatePost {
 	discordLink: string;
 	resources: {
 		title: string;
-		type: 'article' | 'video' | 'research' | 'news';
+		type: number;
 		url: string;
 		description: string;
 	}[];

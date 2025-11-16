@@ -6,30 +6,30 @@ interface PostDetailProps {
 }
 
 export default function PostDetail({post, onBack}: PostDetailProps) {
-	const getResourceIcon = (type: string) => {
+	const getResourceIcon = (type: number) => {
 		switch (type) {
-			case 'article':
+			case 1:
 				return 'ri-article-line';
-			case 'video':
+			case 2:
 				return 'ri-video-line';
-			case 'research':
+			case 3:
 				return 'ri-file-text-line';
-			case 'news':
+			case 4:
 				return 'ri-newspaper-line';
 			default:
 				return 'ri-link';
 		}
 	};
 
-	const getResourceColor = (type: string) => {
+	const getResourceColor = (type: number) => {
 		switch (type) {
-			case 'article':
+			case 1:
 				return 'bg-blue-100 text-blue-600';
-			case 'video':
+			case 2:
 				return 'bg-red-100 text-red-600';
-			case 'research':
+			case 3:
 				return 'bg-green-100 text-green-600';
-			case 'news':
+			case 4:
 				return 'bg-purple-100 text-purple-600';
 			default:
 				return 'bg-gray-100 text-gray-600';
