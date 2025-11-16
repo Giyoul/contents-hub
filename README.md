@@ -15,6 +15,12 @@
 
 ## 프로젝트 소개
 
+### 서비스 링크
+> https://contents-hub-j89f.vercel.app/
+
+### 데이터 수집 모듈 repository
+> https://github.com/Giyoul/discordPlaywright.git
+
 ### 문제 정의
 
 > 순수한 의도의 적극적인 지식 공유 및 토론 활동이 일부 참가자의 심리적 위축과 오해를 유발하며, 궁극적으로 함께 성장하는 지식 선순환이라는 핵심 가치를 훼손시키고 중도 이탈자를 발생시킨다.
