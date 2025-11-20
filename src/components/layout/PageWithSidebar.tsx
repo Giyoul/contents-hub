@@ -4,12 +4,13 @@ import Sidebar, {Category} from '../feature/Sidebar';
 interface pageWithSidebarProps {
 	children: ReactNode;
 	categories?: Category[];
+	onCategoryClick?: () => void;
 }
 
-export default function PageWithSidebar({children, categories}: pageWithSidebarProps) {
+export default function PageWithSidebar({children, categories, onCategoryClick}: pageWithSidebarProps) {
 	return (
 		<div className="flex w-full">
-			<Sidebar categories={categories}/>
+			<Sidebar categories={categories} onCategoryClick={onCategoryClick}/>
 			<main className="flex-1 min-w-0 min-h-screen">
 				{children}
 			</main>

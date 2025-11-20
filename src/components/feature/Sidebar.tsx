@@ -11,9 +11,10 @@ export interface Category {
 
 interface SidebarProps {
 	categories?: Category[];
+	onCategoryClick?: () => void;
 }
 
-export default function Sidebar({categories: propCategories}: SidebarProps) {
+export default function Sidebar({categories: propCategories, onCategoryClick}: SidebarProps) {
 	const location = useLocation();
 	const [categories, setCategories] = useState<Category[]>(propCategories || []);
 	const [loading, setLoading] = useState(!propCategories);
@@ -57,6 +58,13 @@ export default function Sidebar({categories: propCategories}: SidebarProps) {
 						<div key={category.id}>
 							<Link
 								to={category.path}
+								onClick={(e) => {
+									// 현재 선택된 카테고리를 다시 클릭한 경우
+									if (isActive(category.path) && onCategoryClick) {
+										e.preventDefault();
+										onCategoryClick();
+									}
+								}}
 								className={`block px-4 py-2 rounded-md text-sm font-medium transition-all duration-200 ${
 									isActive(category.path)
 										? 'text-blue-600 bg-blue-50 font-semibold'

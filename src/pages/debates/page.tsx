@@ -8,11 +8,7 @@ import {getPostByCategoryId, getPostByID} from "@/service/postService.ts";
 export interface DebatePost {
 	id: string;
 	title: string;
-	author: string;
-	timestamp: string;
 	preview: string;
-	tags: string[];
-	discordLink: string;
 	resources: {
 		title: string;
 		type: number;
@@ -99,11 +95,7 @@ export default function DebatesPage() {
 			const transformedPost: DebatePost = {
 				id: String(postDetail.id),
 				title: postDetail.title || post.title,
-				author: postDetail.author || post.author,
-				timestamp: postDetail.created_at || postDetail.timestamp || post.timestamp,
 				preview: postDetail.description || postDetail.content || post.preview,
-				tags: postDetail.tags || post.tags || [],
-				discordLink: postDetail.discord_link || postDetail.discordLink || post.discordLink,
 				resources: resources.map((res: any) => ({
 					title: res.title || '',
 					type: res.type || 'article',
@@ -133,7 +125,7 @@ export default function DebatesPage() {
 	return (
 		<div className="min-h-screen bg-gray-50">
 			<Header/>
-			<PageWithSidebar>
+			<PageWithSidebar onCategoryClick={handleBack}>
 				<div className="w-full pl-4 sm:pl-6 lg:pl-8 pr-8 py-8">
 					{selectedPost ? (
 						<PostDetail post={selectedPost} onBack={handleBack}/>
